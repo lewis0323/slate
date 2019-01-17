@@ -1,0 +1,157 @@
+<h1 id='modscan'>Modscan</h1>
+<p>Modscan用來測試設備通訊是否正常，即檢驗通訊一來一往的封包是否正常、無遺失</p>
+
+<p>若有不穩定的情況，可以將<strong><strong>response timeout</strong></strong>時間拉長，確認穩定性是否提高</p>
+
+<p>以下說明標準Modbus Protocol跟太陽能逆變器相關Protocol的modscan使用方式</p>
+<h2 id='modbus-protocol'>Modbus Protocol</h2>
+<p>此方式僅用在標準Modbus protocol設備上</p>
+
+<p>If you have any interests in Modbus protocol, maybe you can take a look. <a href="https://www.modbustools.com/modbus.html">Modbus Protocol</a></p>
+
+<p><code>cd /opt/ienbox/core/bin</code></p>
+
+<p><code>java -Djava.library.path=../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-m rtu/tcp</td>
+<td>Modbus transport protocol</td>
+</tr>
+<tr>
+<td>-a #</td>
+<td>Slave address</td>
+</tr>
+<tr>
+<td>-r #</td>
+<td>Start reference</td>
+</tr>
+<tr>
+<td>-c #</td>
+<td>Number of values o read</td>
+</tr>
+<tr>
+<td>-t #</td>
+<td>0: coil, 1: discrete input, 3:input register, 4:holding register</td>
+</tr>
+<tr>
+<td>-b #</td>
+<td>Baudrate (e.g. 9600, 19200)</td>
+</tr>
+<tr>
+<td>-d #</td>
+<td>Databits</td>
+</tr>
+<tr>
+<td>-s #</td>
+<td>Stopbits</td>
+</tr>
+<tr>
+<td>-p #</td>
+<td>Parity</td>
+</tr>
+<tr>
+<td>-i target</td>
+<td>SERIALPORT/HOST</td>
+</tr>
+<tr>
+<td>-P #</td>
+<td>TCP/UDP port number</td>
+</tr>
+<tr>
+<td>-l #</td>
+<td>Poll rate in ms, (1000 is default)</td>
+</tr>
+<tr>
+<td>--timeout #</td>
+<td>Response timeout in ms, (1000 is default)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+You can use <code>modtool.jar -h</code> for help.
+</aside>
+<h2 id='solar-inverter-protocol'>Solar Inverter Protocol</h2>
+<p>此方式用在太陽能逆變器，支援以下廠牌: 茂迪、固德威、KACO、Kstar</p>
+
+<ul>
+<li><p>透過FTP/WinSCP方式將檔案放至iENBox中，預設位置為/media/sd/home/cht</p></li>
+<li><p>cp /media/sd/home/cht/modInverter.jar /opt/ienbox/core/bin</p></li>
+</ul>
+
+<p>參考: <a href="http://bit.ly/2QN8DAq">modInverter使用說明</a></p>
+
+<p><code>java -Djava.library.path=../lib -jar modInverter.jar -m kaco -a 1 -i /dev/ttyS1</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-m motech/goodwe/kaco/kstar</td>
+<td>CHT supported Inverter Protocol</td>
+</tr>
+<tr>
+<td>-a #</td>
+<td>Slave address</td>
+</tr>
+<tr>
+<td>-r #</td>
+<td>Slave reference</td>
+</tr>
+<tr>
+<td>-c #</td>
+<td>Number of values o read</td>
+</tr>
+<tr>
+<td>-t #</td>
+<td>0: coil, 1: discrete input, 3:input register, 4:holding register</td>
+</tr>
+<tr>
+<td>-b #</td>
+<td>Baudrate (e.g. 9600, 19200)</td>
+</tr>
+<tr>
+<td>-d #</td>
+<td>Databits</td>
+</tr>
+<tr>
+<td>-s #</td>
+<td>Stopbits</td>
+</tr>
+<tr>
+<td>-f #</td>
+<td>The path of ID/SN for Goodwe</td>
+</tr>
+<tr>
+<td>-p #</td>
+<td>TCP/UDP port number (502 is default)</td>
+</tr>
+<tr>
+<td>-i target</td>
+<td>SERIALPORT/HOST</td>
+</tr>
+<tr>
+<td>--ms #</td>
+<td>The start of slave reference is queried in Motech (1 is default)</td>
+</tr>
+<tr>
+<td>--me #</td>
+<td>The end of slave reference is queried in Motech (250 is default)</td>
+</tr>
+<tr>
+<td>--timeout #</td>
+<td>Response timeout in ms, (1000 is default)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+You can use <code>modInverter.jar -h</code> for help.
+</aside>

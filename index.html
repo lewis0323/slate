@@ -1,0 +1,279 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>iEN維運手冊</title>
+
+    <style>
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#modscan" class="toc-h1 toc-link" data-title="Modscan">Modscan</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#modbus-protocol" class="toc-h2 toc-link" data-title="Modbus Protocol">Modbus Protocol</a>
+                  </li>
+                  <li>
+                    <a href="#solar-inverter-protocol" class="toc-h2 toc-link" data-title="Solar Inverter Protocol">Solar Inverter Protocol</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>此整理於相關iEN維運經驗作為交接，同時將相關資料放至於Google Docs上，<a href="http://bit.ly/2UG73Qb">iEN維運</a></p>
+
+<p>ModInverter: <a href="http://bit.ly/2C4Gc8Q">Download</a>，Credited by Jasper.</p>
+<h1 id='modscan'>Modscan</h1>
+<p>Modscan用來測試設備通訊是否正常，即檢驗通訊一來一往的封包是否正常、無遺失</p>
+
+<p>若有不穩定的情況，可以將<strong><strong>response timeout</strong></strong>時間拉長，確認穩定性是否提高</p>
+
+<p>以下說明標準Modbus Protocol跟太陽能逆變器相關Protocol的modscan使用方式</p>
+<h2 id='modbus-protocol'>Modbus Protocol</h2>
+<p>此方式僅用在標準Modbus protocol設備上</p>
+
+<p>If you have any interests in Modbus protocol, maybe you can take a look. <a href="https://www.modbustools.com/modbus.html">Modbus Protocol</a></p>
+
+<p><code>cd /opt/ienbox/core/bin</code></p>
+
+<p><code>java -Djava.library.path=../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-m rtu/tcp</td>
+<td>Modbus transport protocol</td>
+</tr>
+<tr>
+<td>-a #</td>
+<td>Slave address</td>
+</tr>
+<tr>
+<td>-r #</td>
+<td>Start reference</td>
+</tr>
+<tr>
+<td>-c #</td>
+<td>Number of values o read</td>
+</tr>
+<tr>
+<td>-t #</td>
+<td>0: coil, 1: discrete input, 3:input register, 4:holding register</td>
+</tr>
+<tr>
+<td>-b #</td>
+<td>Baudrate (e.g. 9600, 19200)</td>
+</tr>
+<tr>
+<td>-d #</td>
+<td>Databits</td>
+</tr>
+<tr>
+<td>-s #</td>
+<td>Stopbits</td>
+</tr>
+<tr>
+<td>-p #</td>
+<td>Parity</td>
+</tr>
+<tr>
+<td>-i target</td>
+<td>SERIALPORT/HOST</td>
+</tr>
+<tr>
+<td>-P #</td>
+<td>TCP/UDP port number</td>
+</tr>
+<tr>
+<td>-l #</td>
+<td>Poll rate in ms, (1000 is default)</td>
+</tr>
+<tr>
+<td>--timeout #</td>
+<td>Response timeout in ms, (1000 is default)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+You can use <code>modtool.jar -h</code> for help.
+</aside>
+<h2 id='solar-inverter-protocol'>Solar Inverter Protocol</h2>
+<p>此方式用在太陽能逆變器，支援以下廠牌: 茂迪、固德威、KACO、Kstar</p>
+
+<ul>
+<li><p>透過FTP/WinSCP方式將檔案放至iENBox中，預設位置為/media/sd/home/cht</p></li>
+<li><p>cp /media/sd/home/cht/modInverter.jar /opt/ienbox/core/bin</p></li>
+</ul>
+
+<p>參考: <a href="http://bit.ly/2QN8DAq">modInverter使用說明</a></p>
+
+<p><code>java -Djava.library.path=../lib -jar modInverter.jar -m kaco -a 1 -i /dev/ttyS1</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-m motech/goodwe/kaco/kstar</td>
+<td>CHT supported Inverter Protocol</td>
+</tr>
+<tr>
+<td>-a #</td>
+<td>Slave address</td>
+</tr>
+<tr>
+<td>-r #</td>
+<td>Slave reference</td>
+</tr>
+<tr>
+<td>-c #</td>
+<td>Number of values o read</td>
+</tr>
+<tr>
+<td>-t #</td>
+<td>0: coil, 1: discrete input, 3:input register, 4:holding register</td>
+</tr>
+<tr>
+<td>-b #</td>
+<td>Baudrate (e.g. 9600, 19200)</td>
+</tr>
+<tr>
+<td>-d #</td>
+<td>Databits</td>
+</tr>
+<tr>
+<td>-s #</td>
+<td>Stopbits</td>
+</tr>
+<tr>
+<td>-f #</td>
+<td>The path of ID/SN for Goodwe</td>
+</tr>
+<tr>
+<td>-p #</td>
+<td>TCP/UDP port number (502 is default)</td>
+</tr>
+<tr>
+<td>-i target</td>
+<td>SERIALPORT/HOST</td>
+</tr>
+<tr>
+<td>--ms #</td>
+<td>The start of slave reference is queried in Motech (1 is default)</td>
+</tr>
+<tr>
+<td>--me #</td>
+<td>The end of slave reference is queried in Motech (250 is default)</td>
+</tr>
+<tr>
+<td>--timeout #</td>
+<td>Response timeout in ms, (1000 is default)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+You can use <code>modInverter.jar -h</code> for help.
+</aside>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The specified kitten could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&#39;m a teapot.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
