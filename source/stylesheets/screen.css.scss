@@ -262,7 +262,7 @@ html, body {
   // I know, it's hackish, but it's the simplist way to make the left
   // half of the content always this background color.
   .dark-box {
-    width: $examples-width;
+    width: 100px;
     background-color: $examples-bg;
     position: absolute;
     right: 0;
@@ -314,20 +314,8 @@ html, body {
 // This is all the stuff with the light background in the left half of the page
 
 .content {
-  // fixes webkit rendering bug for some: see #538
-  -webkit-transform: translateZ(0);
-  // to place content above the dark box
-  position: relative;
-  z-index: 30;
-
-  &:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
+    margin-right: 100px;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
@@ -402,7 +390,7 @@ html, body {
     th,td {
       text-align: left;
       vertical-align: top;
-      line-height: 1.6;
+      line-height: 1;
       code {
         white-space: nowrap;
       }
@@ -505,50 +493,6 @@ html, body {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// CODE SAMPLE STYLES
-////////////////////////////////////////////////////////////////////////////////
-// This is all the stuff that appears in the right half of the page
-
-.content {
-  pre, blockquote {
-    background-color: $code-bg;
-    color: #fff;
-
-    margin: 0;
-    width: $examples-width;
-
-    float:right;
-    clear:right;
-
-    box-sizing: border-box;
-
-    @extend %right-col;
-
-    &>p { margin: 0; }
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      border-bottom: dashed 1px #ccc;
-    }
-  }
-
-  pre {
-    @extend %code-font;
-    padding-top: 2em;
-    padding-bottom: 2em;
-    padding: 2em $main-padding;
-  }
-
-  blockquote {
-    &>p {
-      background-color: $code-annotation-bg;
-      padding: $code-annotation-padding 2em;
-      color: #eee;
-    }
-  }
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
