@@ -1,16 +1,16 @@
 <h1 id='modscan'>Modscan</h1>
 <p>Modscan用來測試設備通訊是否正常，即檢驗通訊一來一往的封包是否正常、無遺失</p>
 
-<p>若有不穩定的情況，可以將<strong><strong>response timeout</strong></strong>時間拉長，確認穩定性是否提高</p>
+<p>若有不穩定的情況，可以將<font color=red><strong>response timeout</strong></font>時間拉長，確認<font color=red>穩定性</font>是否提高</p>
 
 <p>以下說明標準Modbus Protocol跟太陽能逆變器相關Protocol的modscan使用方式</p>
 <h2 id='modbus-protocol'>Modbus Protocol</h2>
 <p>此方式僅用在標準Modbus protocol設備上</p>
 
 <p>If you have any interests in Modbus protocol, maybe you can take a look. <a href="https://www.modbustools.com/modbus.html">Modbus Protocol</a></p>
-
-<p><code>cd /opt/ienbox/core/bin</code></p>
-
+<pre class="highlight shell tab-shell"><code><span class="c"># list</span>
+curl <span class="s2">"http://ien.net.tw"</span>
+</code></pre>
 <p><code>java -Djava.library.path=../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1</code></p>
 
 <table><thead>
