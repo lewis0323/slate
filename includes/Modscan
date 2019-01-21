@@ -8,8 +8,8 @@
 <p>此方式僅用在標準Modbus protocol設備上</p>
 
 <p>If you have any interests in Modbus protocol, maybe you can take a look. <a href="https://www.modbustools.com/modbus.html">Modbus Protocol</a></p>
-<pre class="highlight shell tab-shell"><code><span class="c"># list</span>
-curl <span class="s2">"http://ien.net.tw"</span>
+<pre class="highlight shell tab-shell"><code>    <span class="c"># list</span>
+    curl <span class="s2">"http://ien.net.tw"</span>
 </code></pre>
 <p><code>java -Djava.library.path=../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1</code></p>
 
