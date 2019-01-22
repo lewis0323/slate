@@ -8,7 +8,8 @@
 <p>此方式僅用在標準Modbus protocol設備上</p>
 
 <p>If you have any interests in Modbus protocol, take a look <a href="https://www.modbustools.com/modbus.html">Modbus Protocol</a>.</p>
-<pre class="highlight shell tab-shell"><code>wget http://ien.com.tw
+<pre class="highlight shell tab-shell"><code>    curl http://ien.com.tw  
+    wget http://ien.com.tw
 </code></pre>
 <p><code>cd /opt/ienbox/core/bin</code></p>
 
