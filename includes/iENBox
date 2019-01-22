@@ -1,0 +1,15 @@
+<h1 id='ienbox'>iENBox</h1>
+<p>描述iENBox環境，以及相關障礙排除</p>
+<h2 id='ienbox-2'>iENBox環境</h2><h3 id='webservice-maintenance'>WebService Maintenance</h3>
+<p>http://localhost:4511</p>
+<h2 id='0c6bec049a'>同步異常處理</h2><h3 id='restore-by-webservice'>Restore by WebService</h3>
+<ul>
+<li>Reset and Restore</li>
+<li>Restore Default Settings</li>
+</ul>
+<h3 id='restore-by-shell-linux'>Restore by Shell (Linux)</h3>
+<p>執行clean.sh會將iENBox作清除動作 (若有raw data也會一併清除)</p>
+
+<p><code>cd /opt/ienbox/core/bin</code></p>
+
+<p><code>./clean.sh</code></p>
