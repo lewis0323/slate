@@ -233,19 +233,36 @@
             <a href="#ienbox" class="toc-h1 toc-link" data-title="iENBox">iENBox</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#ienbox-2" class="toc-h2 toc-link" data-title="iENBox環境">iENBox環境</a>
+                    <a href="#ienbox-2" class="toc-h2 toc-link" data-title="iENBox 環境">iENBox 環境</a>
                   </li>
                   <li>
                     <a href="#ienbox-service" class="toc-h2 toc-link" data-title="停用iENBox Service">停用iENBox Service</a>
                   </li>
                   <li>
-                    <a href="#0c6bec049a" class="toc-h2 toc-link" data-title="同步異常處理">同步異常處理</a>
+                    <a href="#restore-ienbox" class="toc-h2 toc-link" data-title="同步異常處理 (Restore iENBox)">同步異常處理 (Restore iENBox)</a>
                   </li>
                   <li>
-                    <a href="#ienbox-3" class="toc-h2 toc-link" data-title="iENBox升級包及更新">iENBox升級包及更新</a>
+                    <a href="#ienbox-ienbox-ienbox-protocol" class="toc-h2 toc-link" data-title="iENBox 納管其他 iENBox (iENBox Protocol)">iENBox 納管其他 iENBox (iENBox Protocol)</a>
+                  </li>
+                  <li>
+                    <a href="#ienbox-3" class="toc-h2 toc-link" data-title="iENBox 升級包及更新">iENBox 升級包及更新</a>
                   </li>
                   <li>
                     <a href="#firmware-upgrade" class="toc-h2 toc-link" data-title="Firmware Upgrade">Firmware Upgrade</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#iencentre" class="toc-h1 toc-link" data-title="iENCentre">iENCentre</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#ien-no-raw-data" class="toc-h2 toc-link" data-title="iEN報表無資料 (No Raw Data)">iEN報表無資料 (No Raw Data)</a>
+                  </li>
+                  <li>
+                    <a href="#iencentre-2" class="toc-h2 toc-link" data-title="更換 iENCentre 資料庫使用者帳密">更換 iENCentre 資料庫使用者帳密</a>
+                  </li>
+                  <li>
+                    <a href="#iencentre-3" class="toc-h2 toc-link" data-title="iENCentre語音告警設定">iENCentre語音告警設定</a>
                   </li>
               </ul>
           </li>
@@ -261,27 +278,22 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>此整理於相關iEN維運經驗作為交接，同時將相關資料放至於Google Docs上，<a href="http://bit.ly/2UG73Qb" title="iEN維運">iEN維運</a></p>
+<p>此整理於相關iEN維運經驗作為交接，同時將相關資料放至於Google Docs上，<a href="http://bit.ly/2UG73Qb" target="_blank">iEN維運</a></p>
 
-<p>ModInverter: <a href="http://bit.ly/2C4Gc8Q" title="ModInverter">Download</a>，credited by Jasper.</p>
-<pre class="highlight shell tab-shell"><code>wget <span class="s2">"http://ien.com.tw"</span>
-</code></pre><h1 id='modscan'>Modscan</h1>
-<p>Modscan是一套用來測試設備通訊是否正常的程式，即檢驗通訊一來一往的封包是否正常、無遺失</p>
+<p>ModInverter: <a href="http://bit.ly/2C4Gc8Q" target="_blank">Download</a>，credited by Jasper.</p>
+<h1 id='modscan'>Modscan</h1>
+<p>Modscan 是一套用來測試設備通訊是否正常的程式，即檢驗通訊一來一往的封包是否正常、無遺失</p>
 
-<p>若有不穩定的情況，可以將<font color=red><strong>response timeout</strong></font>時間拉長，確認穩定性是否提高</p>
+<p>若有不穩定的情況，可以將 <font color=blue>response timeout</font> 時間拉長，提高通訊穩定性 <strong>(建議 timeout 最大設五秒)</strong></p>
 
-<p>以下說明標準Modbus Protocol跟太陽能逆變器相關Protocol的modscan使用方式</p>
+<p>以下說明標準 Modbus Protocol 跟太陽能逆變器相關 Protocol 的 modscan 使用方式</p>
 <h2 id='modbus-protocol'>Modbus Protocol</h2>
-<p>此方式僅用在標準Modbus protocol設備上</p>
+<p>此方式僅用在標準 Modbus protocol 設備上</p>
 
-<p>If you have any interests in Modbus protocol, take a look <a href="https://www.modbustools.com/modbus.html">Modbus Protocol</a>.</p>
-<pre class="highlight shell tab-shell"><code>    curl http://ien.com.tw  
-    wget http://ien.com.tw
+<p>If you have any interests in Modbus protocol, take a look <a href="https://www.modbustools.com/modbus.html" target="_blank">Modbus Protocol</a>.</p>
+<pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
+    java -Djava.library.path<span class="o">=</span>../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1
 </code></pre>
-<p><code>cd /opt/ienbox/core/bin</code></p>
-
-<p><code>java -Djava.library.path=../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1</code></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -342,21 +354,24 @@
 </tr>
 </tbody></table>
 
+<p>執行結果如下圖：</p>
+
+<p><img src="images/Modscan/modtool.png" alt="Image" /></p>
+
 <aside class="notice">
 You can use <code>modtool.jar -h</code> for help.
 </aside>
 <h2 id='solar-inverter-protocol'>Solar Inverter Protocol</h2>
-<p>此方式用在太陽能逆變器，支援以下廠牌: 茂迪、固德威、KACO、Kstar</p>
+<p>此方式使用於太陽能逆變器，支援以下廠牌太陽能逆變器，支援以下廠牌: 茂迪、固德威、Kaco、Kstar</p>
 
 <ul>
-<li><p>透過FTP/WinSCP方式將檔案放至iENBox中，預設位置為/media/sd/home/cht</p></li>
+<li><p>透過 FTP/WinSCP 方式將檔案放至 iENBox 中，預設位置為 /media/sd/home/cht</p></li>
 <li><p>cp /media/sd/home/cht/modInverter.jar /opt/ienbox/core/bin</p></li>
 </ul>
 
-<p>參考: <a href="http://bit.ly/2QN8DAq">modInverter使用說明</a></p>
-
-<p><code>java -Djava.library.path=../lib -jar modInverter.jar -m kaco -a 1 -i /dev/ttyS1</code></p>
-
+<p>參考: <a href="http://bit.ly/2QN8DAq" target="_blank">modInverter使用說明</a></p>
+<pre class="highlight shell tab-shell"><code>    java -Djava.library.path<span class="o">=</span>../lib -jar modInverter.jar -m kaco -a 1 -i /dev/ttyS1
+</code></pre>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -425,22 +440,24 @@ You can use <code>modtool.jar -h</code> for help.
 You can use <code>modInverter.jar -h</code> for help.
 </aside>
 <h1 id='ienbox'>iENBox</h1>
-<p>描述iENBox環境，以及相關障礙排除</p>
+<p>說明 iENBox 環境，以及相關障礙排除經驗</p>
 
-<p>參考: <a href="https://drive.google.com/open?id=1Z-syFzXTG4-eEB7VUSGyWt_ZOC8phfG8">iENBox教育訓練</a>、<a href="https://drive.google.com/open?id=1-6OyF8CFe69U9L563_LCbSUEJrqA6CUK">障礙排除SOP</a></p>
-<h2 id='ienbox-2'>iENBox環境</h2>
-<p>iENBox可以簡單分為下列五個：</p>
+<p>大略分為 <a href="#restore-ienbox">iENBox同步異常</a> 、 <a href="#ienbox-service">停用iENBox服務</a> 、 <a href="#ienbox-3">iENBox更新的方式</a></p>
+
+<p>相關資料: <a href="https://drive.google.com/open?id=1Z-syFzXTG4-eEB7VUSGyWt_ZOC8phfG8" target="_blank">iENBox教育訓練</a> 、 <a href="https://drive.google.com/open?id=1-6OyF8CFe69U9L563_LCbSUEJrqA6CUK" target="_blank">障礙排除SOP</a></p>
+<h2 id='ienbox-2'>iENBox 環境</h2>
+<p>iENBox 可以簡單分為下列五個：</p>
 
 <table><thead>
 <tr>
-<th>設定環境</th>
+<th>環境</th>
 <th>描述</th>
 <th>路徑</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>Bin</td>
-<td>主程式 (含modtool.jar等程式)</td>
+<td>主程式 (含 modtool.jar 等程式)</td>
 <td>opt/ienbox/core/bin</td>
 </tr>
 <tr>
@@ -455,7 +472,7 @@ You can use <code>modInverter.jar -h</code> for help.
 </tr>
 <tr>
 <td>Lib</td>
-<td>程式library</td>
+<td>程式 library</td>
 <td>opt/ienbox/core/lib/OSGi</td>
 </tr>
 <tr>
@@ -464,6 +481,33 @@ You can use <code>modInverter.jar -h</code> for help.
 <td>opt/ienbox/storage/upload/buffer</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li><p>Bin: 通常在此資料夾，是將 <a href="#ienbox-service">iENBox服務停用</a> 或作 <a href="#restore-ienbox">Restore iENBox</a> 的動作，以及 <a href="#modscan">Modscan</a> 測試設備通訊</p></li>
+<li><p>Log: iENBox運作紀錄 (e.g., MQTT連線、IEN平台連線等異常紀錄)</p></li>
+<li><p>Config: 在 Maintenance 設定的結果，會儲存在 <code>PROPRIETARY.PROPERTIES</code> 檔案</p>
+
+<p>若有需要看詳細的 iENBox Log 資訊，可以將 <code>LOG.PROPERTIES</code> 作下列修改<font color=blue>(擇一方式)</font>：</p></li>
+</ul>
+
+<p>1. log4j.logger.IENBOX.MSG=<font color=red>INFO</font>, IENBOXFileAppender</p>
+
+<p>2. log4j.logger.IENBOX.NOTIFY=<font color=red>DEBUG</font>, IENBOXFileAppender</p>
+
+<ul>
+<li><p>Lib: 這邊是相關 library，只有在尚未釋出 iENBox 新版本，Release Candidate 階段先將 lib 作蓋檔，大多蓋在 jars/cht 裡</p>
+
+<p>有做蓋檔動作，得用 <code>chmod a+x</code>，確認 jars 有權限可以執行</p></li>
+<li><p>Raw Data: 確認iENBox是否存留 raw data，通常當<font color=blue>報表沒數值</font>來這邊作確認，參考資料: <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a></p></li>
+</ul>
+
+<p>1. 如果有 Raw Data，先去看 Log，確定非網路問題(e.g., 防火牆等問題)後，建議將 iENBox 服務重啟，確認是否消失</p>
+
+<p>2. 沒有 Raw Data，建議看 iENCentre Log，這邊可以確定 iENBox 有將 Raw Data 上拋回去</p>
+
+<aside class="notice">
+當 Raw Data 檔名從 <code>current</code> 轉換成 <code>fetch</code> ，表示正在上拋回 iEN 平台
+</aside>  
 <h3 id='webservice-maintenance'>WebService Maintenance</h3>
 <p>設定頁面: http://localhost:4511，localhost預設如下：</p>
 
@@ -475,19 +519,21 @@ You can use <code>modInverter.jar -h</code> for help.
 
 <p><img src="images/iENBox/overview.png" alt="Image" /></p>
 <h2 id='ienbox-service'>停用iENBox Service</h2>
-<p>說明iENBox停用的方式，在測試設備通訊時候使用，避免通訊埠打架</p>
+<p>說明 iENBox 停用的方式，在測試設備通訊時候使用，避免通訊埠打架</p>
 <h3 id='windows-ienbox'>Windows iENBox</h3>
-<p>服務 -&gt; iENBox -&gt; 停止</p>
+<ul>
+<li>服務 -&gt; iENBox -&gt; 停止</li>
+</ul>
 
 <p><img src="images/iENBox/stop.png" alt="Image" /></p>
 
 <aside class="warning">
-記得將iENW服務停用，停止watchdog，避免iENBox服務被watchdog呼叫起來
+記得將 iENW 服務停用，停止 watchdog，避免 iENBox 服務被 watchdog 呼叫起來
 </aside> 
 <h3 id='linux-ienbox'>Linux iENBox</h3>
-<p>debug檔案可以暫停iENBox watdog功能，讓服務殺掉不會再被帶起來</p>
+<p>debug 檔案可以暫停 iENBox watdog 功能，讓服務殺掉不會再被帶起來</p>
 
-<p>在主程式位置，輸入下列指令，以下圖為例，iENBox的PID為969，kill 969即可殺掉iENBox服務</p>
+<p>在主程式位置，輸入下列指令，以下圖為例，iENBox 的 PID 為 969，kill 969 即可殺掉 iENBox 服務</p>
 <pre class="highlight shell tab-shell"><code>    touch debug
     <span class="c">#check the PID of iENBox and kill it</span>
     ps aux | grep java
@@ -495,25 +541,25 @@ You can use <code>modInverter.jar -h</code> for help.
 </code></pre>
 <p><img src="images/iENBox/none.png" alt="Image" /></p>
 
-<p>欲恢復iENBox服務，將debug檔案移除即可，watchdog會將iENBox服務帶起來</p>
+<p>欲恢復 iENBox 服務，將 debug 檔案移除即可，watchdog 會將 iENBox 服務帶起來</p>
 <pre class="highlight shell tab-shell"><code>    rm debug
     ps aux | grep java
 </code></pre>
-<p>確認其iENBox服務是否恢復運作</p>
+<p>確認其 iENBox 服務是否恢復運作</p>
 
 <p><img src="images/iENBox/recover.png" alt="Image" /></p>
-<h2 id='0c6bec049a'>同步異常處理</h2>
-<p>以下為iENBox Restore清除的方式，基本上同步異常原因有很多原因</p>
+<h2 id='restore-ienbox'>同步異常處理 (Restore iENBox)</h2>
+<p>以下為 iENBox Restore 清除的方式，基本上同步異常有很多原因</p>
 
-<p>這邊僅能提供單純確認iENBox是否有問題，若清除iENBox後，還仍不能同步</p>
+<p>這邊僅能提供單純確認 iENBox 是否有問題，若清除 iENBox 後，還仍不能同步</p>
 
-<p>建議在平台新增新的iENBox，嘗試看看能不能同步新的iENBox</p>
+<p>建議在平台新增新的 iENBox，嘗試看看能不能同步新的 iENBox</p>
 
-<p>以上方式均不行，建議得看iENCentre的LOG紀錄，並請TL協助幫忙</p>
+<p>以上方式均不行，建議得看 iENCentre 的 LOG 紀錄，並請 TL 協助幫忙</p>
 <h3 id='restore-windows-ienbox'>Restore Windows iENBox</h3>
 <ul>
-<li><p>從服務將iENBox服務停止</p></li>
-<li><p>iEN/iENBox/core/bin，執行clean.bat</p></li>
+<li><p>從服務將 iENBox 服務停止</p></li>
+<li><p>iEN/iENBox/core/bin，執行<code>clean.bat</code></p></li>
 </ul>
 <h3 id='restore-ienbox-by-webservice'>Restore iENBox by WebService</h3>
 <ul>
@@ -521,30 +567,40 @@ You can use <code>modInverter.jar -h</code> for help.
 <li>Restore Default Settings</li>
 </ul>
 <h3 id='restore-ienbox-by-shell-linux'>Restore iENBox by Shell (Linux)</h3>
-<p>執行clean.sh會將iENBox作清除動作 (若有raw data也會一併清除)</p>
+<p>執行 <code>clean.sh</code> 會將 iENBox 作清除動作 (若有raw data也會一併清除)</p>
 <pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
     ./clean.sh
-</code></pre><h2 id='ienbox-3'>iENBox升級包及更新</h2>
-<p>講述iENBox升級包如何產生，以及如何將案場的iENBox做更新</p>
+</code></pre><h2 id='ienbox-ienbox-ienbox-protocol'>iENBox 納管其他 iENBox (iENBox Protocol)</h2>
+<p>參考: <a href="https://drive.google.com/open?id=13BCjy7DBRGroE2oNK_OkXACVogV9Tpq_" target="_blank">iEN-Box 納管其他 iEN-Box</a></p>
+
+<ol>
+<li><p>在新增控制器 -&gt; 通訊協定選擇「IENBox」</p></li>
+<li><p>填入欲納管 iENBox 的 IP 及 埠號: 4511</p></li>
+<li><p>暫存器位置: 監控點ID <font color=red>(註: 不需要帶 <strong>$</strong> 符號)</font></p></li>
+</ol>
+
+<p><img src="images/iENBox/addIENBox.png" alt="Image" /></p>
+<h2 id='ienbox-3'>iENBox 升級包及更新</h2>
+<p>講述 iENBox 升級包如何產生，以及如何將案場的 iENBox 做更新</p>
 <h3 id='a2f059e7a9'>升級包製作</h3>
-<p>此升級包需要iENBox版號對應才能更新，例如: iENBox_1.24.15-1.26.3</p>
+<p>此升級包需要 iENBox 版號對應才能更新，例如: iENBox_1.24.15-1.26.3</p>
 
-<p>那麼需要iENBox 1.24.15 packages 與 iENBox 1.26.3 packages</p>
+<p>那麼需要 iENBox 1.24.15 packages 與 iENBox 1.26.3 packages</p>
 
-<p>執行MakeBoxPatch-NoSQL.bat，將對應的packages填入</p>
+<p>執行 MakeBoxPatch-NoSQL.bat，將對應的 packages 填入</p>
 
 <p><code>MakeBoxPatch-NoSQL.bat &lt;舊版位置&gt; &lt;新版位置&gt; &lt;升級包名稱&gt;</code></p>
 
-<p>若要製作iENBox all-1.26.3，則舊版位置為null，即建立空的資料夾帶入</p>
+<p>若要製作 iENBox all-1.26.3，則舊版位置為 null，即建立空的資料夾帶入</p>
 
-<p>參考: <a href="https://drive.google.com/open?id=1F91nYGgeTILX_D_N6xW8SJiW3O8iZexl">iENBox安裝檔與升級包製作</a></p>
+<p>參考: <a href="https://drive.google.com/open?id=1F91nYGgeTILX_D_N6xW8SJiW3O8iZexl" target="_blank">iENBox安裝檔與升級包製作</a></p>
 
 <p><img src="images/iENBox/patch.png" alt="Image" /></p>
 <h3 id='ienbox-update'>iENBox Update</h3>
-<p>分成兩種方式，其一可透過iEN雲端平台更新，另一種則為一鍵更新</p>
+<p>分成兩種方式，其一可透過 iEN 雲端平台更新，另一種則為一鍵更新</p>
 
 <ul>
-<li>iEN雲端更新: 維運選單 -&gt; 軟體版本管理 -&gt; 選擇要更新的iENBox -&gt; 更新</li>
+<li>iEN 雲端更新: 維運選單 -&gt; 軟體版本管理 -&gt; 選擇要更新的 iENBox -&gt; 更新</li>
 </ul>
 
 <p>透過下列網址，確認升級包檔案是否存在平台，將版號作對應修改即可: ienbox_<font color=red>1.24.15</font>-<font color=red>1.26.3</font>.tar</p>
@@ -554,48 +610,123 @@ You can use <code>modInverter.jar -h</code> for help.
 <p><img src="images/iENBox/OTA.png" alt="Image" /></p>
 
 <aside class="notice">
-<code>iENBox可升級版號</code>為更新後的iENBox版本
+<code>iENBox 可升級版號</code>為更新後的 iENBox 版本
 </aside>  
 
 <ul>
-<li>一鍵更新: 將升級包放置同個資料夾，修改upgrade.bat跟runcmd.bat</li>
+<li>一鍵更新: 將升級包放置同個資料夾，修改 upgrade.bat 跟 runcmd.bat</li>
 </ul>
 
-<p>將IP以及檔名改成相對應的名稱，如紅框所示</p>
+<p>將 IP 以及檔名改成相對應的名稱，如紅框所示，執行 <code>upgrade.bat</code> 進行更新</p>
 
 <p><img src="images/iENBox/upgrade.png" alt="Image" /></p>
 
 <p><img src="images/iENBox/runcmd.png" alt="Image" /></p>
 
 <ul>
-<li>手動更新: 將升級包放至iENBox SD卡中，其實就等於手動執行script的動作</li>
+<li>手動更新: 將 升級包 放至 iENBox SD卡 中，其實就等於手動執行 script 的動作，做跟 runcmd 內容一樣的指令</li>
 </ul>
 <pre class="highlight shell tab-shell"><code>    <span class="c">#解壓縮升級包</span>
     tar xvf ienbox_all-1.26.3.tar
     <span class="c">#執行patch script</span>
     sh patch.sh /opt/ienbox
-</code></pre><h2 id='firmware-upgrade'>Firmware Upgrade</h2>
-<p>進入網路設定頁面: http://10.0.50.100/，System Setup -&gt; Firmware Upgrade</p>
+</code></pre><h3 id='ienbox-cloud-gateway'>雲端閘道器 iENBox 更新 (Cloud Gateway)</h3>
+<p>參考: <a href="https://docs.google.com/document/d/1Aid6HHghIUjJDLgsgr2E91PjZwuXL0ClRyv6TEKPa_k" target="_blank">手動更新 Cloud Gateway 上面的 iENBox 版本</a></p>
 
-<p>Step 1. 確認iENBox Firmware version</p>
+<p>Step 1. 將 iENBox 安裝 iso 檔案裡面的 <code>06-ienbox.tar.gz</code> 複製到 Cloud Gateway 上的 /opt/ienboxes 中，如此未來新增的 iEN-Box 都會採用最新的版本運行</p>
+
+<p>Step 2. tar zxvf /opt/ienboxes/06-ienbox.tar.gz -C /tmp</p>
+
+<p>Step 3. cp -f /tmp/ienbox/core/hsqldb/bin/ienbox.script /opt/ienboxes/CG0000000007/core/hsqldb/bin/</p>
+
+<p>Step 4. cp -f /tmp/ienbox/core/lib/OSGi/jars/cht/*.jar /opt/ienboxes/CG0000000007/core/lib/OSGi/jars/cht/</p>
+
+<p>Step 5. (cd /opt/ienboxes/CG0000000007/core/bin ; ./clean.sh)</p>
+
+<p>Step 6. (cd /opt/ienboxes/CG0000000007/core/bin ; ./run.sh stop)</p>
+
+<p>Step 7. 確認iENBox版本</p>
+
+<p><img src="images/iENBox/CloudiENBox.png" alt="Image" /></p>
+<h2 id='firmware-upgrade'>Firmware Upgrade</h2>
+<p>進入 ATOP 網路設定頁面: http://10.0.50.100/，System Setup -&gt; Firmware Upgrade</p>
+
+<p>Step 1. 確認 iENBox Firmware version</p>
 
 <p><img src="images/Firmware/version.png" alt="Image" /></p>
 
-<p>Step 2. 更新Firmware</p>
+<p>Step 2. 更新 Firmware</p>
 
 <p><img src="images/Firmware/firmware.png" alt="Image" /></p>
 
-<p>Step 3. 確認Firmware檔案是否正確</p>
+<p>Step 3. 確認 Firmware 檔案是否正確</p>
 
 <p><img src="images/Firmware/confirm.png" alt="Image" /></p>
 
-<p>Step 4. iENBox更新Firmware中</p>
+<p>Step 4. iENBox 更新 Firmware 中</p>
 
 <p><img src="images/Firmware/update.png" alt="Image" /></p>
 
-<p>Step 5. 更新完後會重開機，確認Firmware version</p>
+<p>Step 5. 更新完後會重開機，確認 Firmware version</p>
 
 <p><img src="images/Firmware/finish.png" alt="Image" /></p>
+<h1 id='iencentre'>iENCentre</h1>
+<p>說明 iENCentre 操作設定，以及相關障礙排除</p>
+<h2 id='ien-no-raw-data'>iEN報表無資料 (No Raw Data)</h2>
+<p>下列方式可以先自行排除，若都不能解決，建議請 TL 協助幫忙，<a href="https://drive.google.com/open?id=1pomWgNIVvLxeuZpJsh7u5iLX20bvQtfbCQxklhX-1Lg" target="_blank">iEN報表無資料問題(Google Doc)</a> 供參考</p>
+<h3 id='ienbox-buffer'>iENBox Buffer</h3>
+<p>可以參考前面 <a href="#ienbox-2">iENBox環境</a> 或 <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 <code>upload/buffer</code> 內是否有 raw data</p>
+
+<ol>
+<li><p>若沒有，表示 iENBox 有正常上拋回平台，<strong>平台DataBase</strong> 問題可能性較大</p></li>
+<li><p>若有 raw data，建議重啟服務，若重啟服務仍不行，請往下逐一確認問題點</p></li>
+</ol>
+
+<p>若案場是<font color=blue>固定IP</font>，可以透過平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 iENBox Webservice 作重啟 iENBox 動作，如下圖</p>
+
+<p><img src="images/iENCentre/restart.png" alt="Image" /></p>
+<h3 id='firewall-rules'>Firewall Rules</h3>
+<p>確認 iENBox 對 iEN 平台的 8080 port 是有連通的</p>
+
+<ul>
+<li><p>telnet 211.72.253.88 8080，確認網路有無連通</p></li>
+<li><p>wget http://211.72.253.88:8080/ienc/MiddlewareMSH，確認是否能下載</p></li>
+</ul>
+
+<p>若網路有連通，但不能下載 MiddlewareMSH，表示平台有問題，可以確認平台 Middleware 狀態</p>
+
+<p><img src="images/iENCentre/middleware.png" alt="Image" /></p>
+<h3 id='dns-server'>DNS Server</h3>
+<p>嘗試上述方式都不行的話，建議修改 iEN 平台 <font color=red><strong>主要平台訊息接收URL</strong></font> 內容</p>
+
+<p>原因有可能是客戶端防火牆，將 DNS Server 給擋住了</p>
+
+<p>原本: http://<strong>ien.com.tw</strong>:8080/ienc/MiddlewareMSH</p>
+
+<p>修改: http://<strong>211.72.253.88</strong>:8080/ienc/MiddlewareMSH</p>
+
+<p>即 <font color=blue>ien.com.tw</font> DNS 為 <font color=blue>211.72.253.88</font> 意思</p>
+
+<p><font color=red>上述方式都不能解決，建議抓 iENCentre Log 給 TL 幫忙查測</font></p>
+<h2 id='iencentre-2'>更換 iENCentre 資料庫使用者帳密</h2>
+<p>修改下列兩個檔案，將 <code>database.user</code> 、 <code>database.password</code> 替換欲修改的帳密</p>
+
+<ol>
+<li><p>ienc.properties:     \webapps\ienc\WEB-INF\ienc.properties</p></li>
+<li><p>portal.properties:   \webapps\portal\WEB-INF\portal.properties</p></li>
+</ol>
+
+<p><img src="images/iENCentre/db.png" alt="Image" /></p>
+
+<aside class="warning">
+設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
+</aside>  
+<h2 id='iencentre-3'>iENCentre語音告警設定</h2>
+<p>需將告警事件單的 <font color=blue><strong>事件等級事件嚴重程度</strong></font> 設定為重要以上階級，才能收到語音告警</p>
+
+<p>將等級程度設為 <font color=red>緊急</font> 、 <font color=red>警戒</font> 、 <font color=red>重要</font> 以上</p>
+
+<p><img src="images/iENCentre/voice.png" alt="Image" /></p>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.

@@ -1,0 +1,57 @@
+<h1 id='iencentre'>iENCentre</h1>
+<p>說明 iENCentre 操作設定，以及相關障礙排除</p>
+<h2 id='ien-no-raw-data'>iEN報表無資料 (No Raw Data)</h2>
+<p>下列方式可以先自行排除，若都不能解決，建議請 TL 協助幫忙，<a href="https://drive.google.com/open?id=1pomWgNIVvLxeuZpJsh7u5iLX20bvQtfbCQxklhX-1Lg" target="_blank">iEN報表無資料問題(Google Doc)</a> 供參考</p>
+<h3 id='ienbox-buffer'>iENBox Buffer</h3>
+<p>可以參考前面 <a href="#ienbox-2">iENBox環境</a> 或 <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 <code>upload/buffer</code> 內是否有 raw data</p>
+
+<ol>
+<li><p>若沒有，表示 iENBox 有正常上拋回平台，<strong>平台DataBase</strong> 問題可能性較大</p></li>
+<li><p>若有 raw data，建議重啟服務，若重啟服務仍不行，請往下逐一確認問題點</p></li>
+</ol>
+
+<p>若案場是<font color=blue>固定IP</font>，可以透過平台的 <font color=blue><strong>控制伺服器維運</strong></font> 進入 iENBox Webservice 作重啟 iENBox 動作，如下圖</p>
+
+<p><img src="/images/iENCentre/restart.png" alt="Image" /></p>
+<h3 id='firewall-rules'>Firewall Rules</h3>
+<p>確認 iENBox 對 iEN 平台的 8080 port 是有連通的</p>
+
+<ul>
+<li><p>telnet 211.72.253.88 8080，確認網路有無連通</p></li>
+<li><p>wget http://211.72.253.88:8080/ienc/MiddlewareMSH，確認是否能下載</p></li>
+</ul>
+
+<p>若網路有連通，但不能下載 MiddlewareMSH，表示平台有問題，可以確認平台 Middleware 狀態</p>
+
+<p><img src="/images/iENCentre/middleware.png" alt="Image" /></p>
+<h3 id='dns-server'>DNS Server</h3>
+<p>嘗試上述方式都不行的話，建議修改 iEN 平台 <font color=red><strong>主要平台訊息接收URL</strong></font> 內容</p>
+
+<p>原因有可能是客戶端防火牆，將 DNS Server 給擋住了</p>
+
+<p>原本: http://<strong>ien.com.tw</strong>:8080/ienc/MiddlewareMSH</p>
+
+<p>修改: http://<strong>211.72.253.88</strong>:8080/ienc/MiddlewareMSH</p>
+
+<p>即 <font color=blue>ien.com.tw</font> DNS 為 <font color=blue>211.72.253.88</font> 意思</p>
+
+<p><font color=red>上述方式都不能解決，建議抓 iENCentre Log 給 TL 幫忙查測</font></p>
+<h2 id='iencentre-2'>更換 iENCentre 資料庫使用者帳密</h2>
+<p>修改下列兩個檔案，將 <code>database.user</code> 、 <code>database.password</code> 替換欲修改的帳密</p>
+
+<ol>
+<li><p>ienc.properties:     \webapps\ienc\WEB-INF\ienc.properties</p></li>
+<li><p>portal.properties:   \webapps\portal\WEB-INF\portal.properties</p></li>
+</ol>
+
+<p><img src="/images/iENCentre/db.png" alt="Image" /></p>
+
+<aside class="warning">
+設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
+</aside>  
+<h2 id='iencentre-3'>iENCentre語音告警設定</h2>
+<p>需將告警事件單的 <font color=blue><strong>事件等級事件嚴重程度</strong></font> 設定為重要以上階級，才能收到語音告警</p>
+
+<p>將等級程度設為 <font color=red>緊急</font> 、 <font color=red>警戒</font> 、 <font color=red>重要</font> 以上</p>
+
+<p><img src="/images/iENCentre/voice.png" alt="Image" /></p>

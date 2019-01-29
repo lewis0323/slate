@@ -1,20 +1,16 @@
 <h1 id='modscan'>Modscan</h1>
-<p>Modscan是一套用來測試設備通訊是否正常的程式，即檢驗通訊一來一往的封包是否正常、無遺失</p>
+<p>Modscan 是一套用來測試設備通訊是否正常的程式，即檢驗通訊一來一往的封包是否正常、無遺失</p>
 
-<p>若有不穩定的情況，可以將<font color=red><strong>response timeout</strong></font>時間拉長，確認穩定性是否提高</p>
+<p>若有不穩定的情況，可以將 <font color=blue>response timeout</font> 時間拉長，提高通訊穩定性 <strong>(建議 timeout 最大設五秒)</strong></p>
 
-<p>以下說明標準Modbus Protocol跟太陽能逆變器相關Protocol的modscan使用方式</p>
+<p>以下說明標準 Modbus Protocol 跟太陽能逆變器相關 Protocol 的 modscan 使用方式</p>
 <h2 id='modbus-protocol'>Modbus Protocol</h2>
-<p>此方式僅用在標準Modbus protocol設備上</p>
+<p>此方式僅用在標準 Modbus protocol 設備上</p>
 
-<p>If you have any interests in Modbus protocol, take a look <a href="https://www.modbustools.com/modbus.html">Modbus Protocol</a>.</p>
-<pre class="highlight shell tab-shell"><code>    curl http://ien.com.tw  
-    wget http://ien.com.tw
+<p>If you have any interests in Modbus protocol, take a look <a href="https://www.modbustools.com/modbus.html" target="_blank">Modbus Protocol</a>.</p>
+<pre class="highlight shell tab-shell"><code>    <span class="nb">cd</span> /opt/ienbox/core/bin
+    java -Djava.library.path<span class="o">=</span>../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1
 </code></pre>
-<p><code>cd /opt/ienbox/core/bin</code></p>
-
-<p><code>java -Djava.library.path=../lib -jar modtool.jar -m rtu -b 9600 -d 8 -s 1 -p none -a 1 -r 100 -c 1 -t 4 -i /dev/ttyS1</code></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -75,21 +71,24 @@
 </tr>
 </tbody></table>
 
+<p>執行結果如下圖：</p>
+
+<p><img src="/images/Modscan/modtool.png" alt="Image" /></p>
+
 <aside class="notice">
 You can use <code>modtool.jar -h</code> for help.
 </aside>
 <h2 id='solar-inverter-protocol'>Solar Inverter Protocol</h2>
-<p>此方式用在太陽能逆變器，支援以下廠牌: 茂迪、固德威、KACO、Kstar</p>
+<p>此方式使用於太陽能逆變器，支援以下廠牌太陽能逆變器，支援以下廠牌: 茂迪、固德威、Kaco、Kstar</p>
 
 <ul>
-<li><p>透過FTP/WinSCP方式將檔案放至iENBox中，預設位置為/media/sd/home/cht</p></li>
+<li><p>透過 FTP/WinSCP 方式將檔案放至 iENBox 中，預設位置為 /media/sd/home/cht</p></li>
 <li><p>cp /media/sd/home/cht/modInverter.jar /opt/ienbox/core/bin</p></li>
 </ul>
 
-<p>參考: <a href="http://bit.ly/2QN8DAq">modInverter使用說明</a></p>
-
-<p><code>java -Djava.library.path=../lib -jar modInverter.jar -m kaco -a 1 -i /dev/ttyS1</code></p>
-
+<p>參考: <a href="http://bit.ly/2QN8DAq" target="_blank">modInverter使用說明</a></p>
+<pre class="highlight shell tab-shell"><code>    java -Djava.library.path<span class="o">=</span>../lib -jar modInverter.jar -m kaco -a 1 -i /dev/ttyS1
+</code></pre>
 <table><thead>
 <tr>
 <th>Parameter</th>
