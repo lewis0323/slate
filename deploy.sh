@@ -59,10 +59,10 @@ parse_args() {
 
   # Source directory & target branch.
   deploy_directory=build
-  deploy_branch=gh-pages
+  deploy_branch=master
 
   #if no user identity is already set in the current git environment, use this:
-  default_username=${GIT_DEPLOY_USERNAME:-deploy.sh}
+  default_username=hoyuisun
   default_email=${GIT_DEPLOY_EMAIL:-}
 
   #repository to deploy to. must be readable and writable.
@@ -87,7 +87,7 @@ main() {
 
   #default commit message uses last title if a custom one is not supplied
   if [[ -z $commit_message ]]; then
-    commit_message="publish: $commit_title"
+    commit_message="$commit_title"
   fi
 
   #append hash to commit message unless no hash flag was found
