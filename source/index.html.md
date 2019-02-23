@@ -13,7 +13,7 @@ includes:
   - iENCentre
   - iENPortal
   - Database
-  - errors
+  - Log
  
 
 search: true

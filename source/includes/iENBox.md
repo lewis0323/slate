@@ -161,6 +161,20 @@ debug 檔案可以暫停 iENBox watdog 功能，讓服務殺掉不會再被帶�
 	telnet mqtt.ien.net.tw 1883
 ```
 
+### 相關同步異常 Log
+
+* StatusCode: 400，Required Control Server ID doesn't match my ID.
+
+表示該 iENBox 被其他案場同步過，與原本納管 control server id 不同，清除 iENBox 即可解決
+
+![Image](iENBox/dismatch.png)
+
+* 同步結果卡在同步中
+
+若一直顯示同步中，建議將 iENBox 版本更新至最新後，再同步一次
+
+原因為可能 iENBox 版本過舊，導致 iENCentre 新版本新增的功能有所衝突
+
 ## iENBox 納管其他 iENBox (iENBox Protocol)
 
 參考： <a href="https://drive.google.com/open?id=13BCjy7DBRGroE2oNK_OkXACVogV9Tpq_" target="_blank">iEN-Box 納管其他 iEN-Box</a>
@@ -211,7 +225,7 @@ debug 檔案可以暫停 iENBox watdog 功能，讓服務殺掉不會再被帶�
 
 * 一鍵更新： 將升級包放置同個資料夾，修改 `upgrade.bat` 跟 `runcmd.bat`
 
-將 IP 以及檔名改成相對應的名稱，如紅框所示，執行 `upgrade.bat` 進行更新
+將 IP 以及檔名改成相對應的名稱，如紅框所示，執行 `upgrade.bat` 進行更新，下載: <a href="http://bit.ly/2DxKDsu" target="_blank">一鍵更新</a>
 
 ![Image](iENBox/upgrade.png)
 

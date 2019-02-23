@@ -2,13 +2,13 @@
 
 說明 iENCentre 操作設定，以及相關障礙排除
 
-## iEN報表無資料 (No Raw Data)
+## iEN 報表無資料 (No Raw Data)
 
 下列方式可以先自行排除，若都不能解決，建議請 TL 協助幫忙，<a href="https://drive.google.com/open?id=1pomWgNIVvLxeuZpJsh7u5iLX20bvQtfbCQxklhX-1Lg" target="_blank">iEN報表無資料問題(Google Doc)</a> 供參考
 
 ### iENBox Buffer
 
-可以參考前面 [iENBox環境](#ienbox-2) 或 <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 `upload/buffer` 內是否有 raw data
+可以參考前面 [iENBox 環境](#ienbox-2) 或 <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 `upload/buffer` 內是否有 raw data
 
 1. 若沒有，表示 iENBox 有正常上拋回平台，**平台 DataBase** 問題可能性較大
 
@@ -44,6 +44,31 @@
 
 <font color=red>上述方式都不能解決，建議抓 iENCentre Log 給 TL 幫忙查測</font>
 
+## 開啟 iENCentre LOG 紀錄
+
+若 iENCentre 沒有產生 ien.log 檔案，修改 `log4j.properties`
+
+位置: webapps/portal/WEB-INF/log4j.properties
+
+將前10行換成下面這些之後儲存重啟服務，應能產生 ien.log
+
+```shell
+log4j.rootLogger=INFO, ien
+
+log4j.logger.ien=INFO, ien
+log4j.appender.ien=org.apache.log4j.RollingFileAppender
+log4j.appender.ien.File=${catalina.home}/logs/ien.log
+log4j.appender.ien.Encoding=UTF-8
+log4j.appender.ien.MaxFileSize=10MB
+log4j.appender.ien.MaxBackupIndex=5
+log4j.appender.ien.layout=org.apache.log4j.PatternLayout
+log4j.appender.ien.layout.ConversionPattern=[%d{MM/dd HH:mm:ss}] %5p (%C{1}:%L) - %m%n
+```
+
+沒產生 ien.log 前的設定畫面，可以發現 rootLogger 設為 OFF
+
+![Image](iENCentre/log.png)
+
 ## 更換 iENCentre 資料庫使用者帳密
 
 修改下列兩個檔案，將 `database.user` 、 `database.password` 替換欲修改的帳密
@@ -58,7 +83,7 @@
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
 </aside>  
 
-## iENCentre語音告警設定
+## iENCentre 語音告警設定
 
 需將告警事件單的 <font color=blue>**事件等級事件嚴重程度**</font> 設定為重要以上階級，才能收到語音告警
 
