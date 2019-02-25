@@ -161,6 +161,18 @@ debug 檔案可以暫停 iENBox watdog 功能，讓服務殺掉不會再被帶�
 	telnet mqtt.ien.net.tw 1883
 ```
 
+* iENBox 更改 MQTT Server IP
+
+Maintenance -> IENBOX_MQTT_URL_FORMAT
+
+![Image](iENBox/mqtt.png)
+
+* Litebox 更改 MQTT Server IP
+
+Box Configuration -> MQTT -> MQTT Hostname
+
+![Image](Litebox/mqtt.png)
+
 ### 相關同步異常 Log
 
 * StatusCode: 400，Required Control Server ID doesn't match my ID.
@@ -174,6 +186,56 @@ debug 檔案可以暫停 iENBox watdog 功能，讓服務殺掉不會再被帶�
 若一直顯示同步中，建議將 iENBox 版本更新至最新後，再同步一次
 
 原因為可能 iENBox 版本過舊，導致 iENCentre 新版本新增的功能有所衝突
+
+## iENBox / Litebox 定時重開機
+
+若設備有不穩定情況，建議將 iENBox / Litebox 作定時重開機動作，再觀察幾天看看
+
+或者安裝硬體定時器·來改善穩定性
+
+### WebService Maintenance
+
+根據案場環境，設定不同重開機條件，iENBox 能定時重啟，Litebox 則是 MQTT 斷線重啟或開機間隔多久後重啟
+
+iENBox：
+
+* Maintenance
+
+IENBOX_REBOOT_ENABLED： <font color=BLUE>TRUE</font>
+
+IENBOX_REBOOT_CRON (重啟時間)： <font color=BLUE>* 0 0 * * ? *</font>，表示為 00:00:00 作重開機動作
+
+前三個分別表示： 秒、分、時，`*` 表示任意值，若只要在 01:XX 重啟，可以表示為 * * 1 * * ? *
+
+有興趣可以參考 <a href="http://linux.vbird.org/linux_basic/0430cron.php" target="_blank">鳥哥 crontab</a> 用法
+
+![Image](iENBox/reboot.png)
+
+Litebox：
+
+* Box Configuration -> Automatic Maintenance
+
+Reboot when Memory Used: 當記憶體上升到多少的使用率後，作重開機動作
+
+Reboot when MQTT Disconnect Timeout: 當 MQTT 通訊異常多少秒數後，作重開機動作 
+
+Reboot Hours: 間隔多少小時後，作重開機動作
+
+![Image](Litebox/reboot.png)
+
+### 平台 Maintenance 設定
+
+* 維運選單 -> 障礙查測 -> 控制伺服器維運 -> MQTT 遠端維運 -> 選擇 Box Configuration
+
+設定相關重開機參數，同 WebService Maintenance 設定方式
+
+iENBox：
+
+![Image](iENBox/rebootiENBox.png)
+
+Litebox：
+
+![Image](Litebox/rebootLiteBox.png)
 
 ## iENBox 納管其他 iENBox (iENBox Protocol)
 
