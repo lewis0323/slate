@@ -42,7 +42,7 @@ Raw Data | 設備資料 | opt/ienbox/storage/upload/buffer
 	
 <aside class="notice">
 當 Raw Data 檔名從 <code>current</code> 轉換成 <code>fetch</code> ，表示正在上拋回 iEN 平台
-</aside>  
+</aside>
 
 ### WebService Maintenance
 
@@ -235,7 +235,7 @@ iENBox：
 
 Litebox：
 
-![Image](Litebox/rebootLiteBox.png)
+![Image](Litebox/rebootLitebox.png)
 
 ## iENBox 納管其他 iENBox (iENBox Protocol)
 
@@ -283,7 +283,7 @@ Litebox：
 
 <aside class="notice">
 <code>iENBox 可升級版號</code>為更新後的 iENBox 版本
-</aside>  
+</aside> 
 
 * 一鍵更新： 將升級包放置同個資料夾，修改 `upgrade.bat` 跟 `runcmd.bat`
 
