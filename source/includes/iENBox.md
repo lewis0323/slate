@@ -217,6 +217,30 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 
 ![Image](Litebox/rebootLiteBox.png)
 
+## iENBox 設備點位無法讀取
+
+此問題為設備通訊不穩定，可以加終端電阻，或換通訊線來改善
+
+另外也能透過調整 `timeout` 、`polling time`，提升 iENBox 詢問設備的成功率
+
+### iENCentre 設定
+
+* 維運選單 -> 設備管理 -> 控制器管理 -> 選擇控制器
+
+* 輪詢時間：表示為 polling time，等於 iENBox 的 JAMOD_SEND_DELAY_MS
+
+* 連線逾時；表示為 timeout，等於 iENBox 的 JAMOD_READ_DELAY_MS
+
+預設輪詢時間是 50ms，連線逾時是 500ms，輪詢時間建議最長到 `100ms ~ 200ms`，而連線逾時最長則是 `5s ~ 7s`
+
+![Image](iENBox/device.png)
+
+### iENBox 設定
+
+主要是調整 `CACHE_FEEDER_INTERVAL` 、 `JAMOD_READ_DELAY_MS` 這兩個參數
+
+這邊就針對 iENCentre 設定作說明，不再論述 iENBox，細節參考 <a href="https://hoyuisun.github.io/#ienbox-2">iENBox 環境</a> 的常用 iENBox 參數說明
+
 ## iENBox 納管其他 iENBox (iENBox Protocol)
 
 參考： <a href="https://drive.google.com/open?id=13BCjy7DBRGroE2oNK_OkXACVogV9Tpq_" target="_blank">iEN-Box 納管其他 iEN-Box</a>

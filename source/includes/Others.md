@@ -1,6 +1,6 @@
 # Others
 
-## iENBox 服務不正常運作 <font color=red>(待驗證)</font>
+## iENBox WebService 服務不正常運作 <font color=red>(待驗證)</font>
 
 iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決
 
@@ -10,7 +10,6 @@ iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀�
 
 ```shell
 	#!/bin/bash
-
 	while [ TRUE ]
 	do
 		PID=`cat /opt/ienbox/storage/ienbox.pid`
@@ -32,9 +31,10 @@ iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀�
 
 若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關
 
+連結: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a>
+
 ```shell
 	#!/bin/bash
-
 	while [ TRUE ] 
 	do
 		ip=`ifconfig | grep eth0 | awk 'NR==1{print $1}'`
