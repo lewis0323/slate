@@ -1,6 +1,6 @@
 # Others
 
-## iENBox WebService 服務不正常運作 <font color=red>(待驗證)</font>
+## iENBox WebService 服務不正常運作
 
 iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決
 

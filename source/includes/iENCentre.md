@@ -91,6 +91,19 @@ log4j.appender.ien.layout.ConversionPattern=[%d{MM/dd HH:mm:ss}] %5p (%C{1}:%L) 
 
 ![Image](iENCentre/voice.png)
 
+## Edge Computing (邊緣計算) 設定
 
+需要修改 iENCentre 與 iENBox 參數設定，<a href="https://drive.google.com/open?id=1pomWgNIVvLxeuZpJsh7u5iLX20bvQtfbCQxklhX-1Lg" target="_blank">Edge Computing設定(Google Doc)</a> 供參考
 
+1. 勾選控制伺服器的 `Edge Computing` ，使平台不再做 ETL 計算
+
+![Image](iENCentre/edge_ien.png)
+
+2. 設定 iENBox `FOG_COMPUTING_ENABLE` 為 <font color=blue>TRUE</font>
+
+![Image](iENCentre/edge_box.png)
+
+<aside class="notice">
+iENBox 版本須為 1.27.1 才能使用 Edge Computing 功能
+</aside>  
 
