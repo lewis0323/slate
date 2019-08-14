@@ -12,7 +12,9 @@ Step 1. 登入 Postgresql，輸入使用者密碼
 
 Step 2. 尋找 Raw Data/ETL Data 存放位置，會長在 customer 底下
 
-位置為 ienc_system -> Schemas -> ienc_customer_1 <font color=red>(註: 因為是企業版，故客戶ID 大多為1，理論上要對應到實際客戶ID)</font>
+位置為 ienc_system -> Schemas -> ienc_customer_1 
+
+<font color=red>(註: 因為是企業版，故客戶ID 大多為1，理論上要對應到實際客戶ID)</font>
 
 ![Image](Database/Postgresql/schema.png)
 

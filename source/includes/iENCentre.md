@@ -83,7 +83,7 @@ log4j.appender.ien.layout.ConversionPattern=[%d{MM/dd HH:mm:ss}] %5p (%C{1}:%L) 
 設定完須將 MSSQL 服務重啟，再將 iENCentre 服務重啟
 </aside>  
 
-## iENCentre 語音告警設定
+## iENCentre 語音告警設定 (Voice Notify)
 
 需將告警事件單的 <font color=blue>**事件等級事件嚴重程度**</font> 設定為重要以上階級，才能收到語音告警
 
@@ -93,7 +93,7 @@ log4j.appender.ien.layout.ConversionPattern=[%d{MM/dd HH:mm:ss}] %5p (%C{1}:%L) 
 
 ## Edge Computing (邊緣計算) 設定
 
-需要修改 iENCentre 與 iENBox 參數設定，<a href="https://drive.google.com/open?id=1pomWgNIVvLxeuZpJsh7u5iLX20bvQtfbCQxklhX-1Lg" target="_blank">Edge Computing設定(Google Doc)</a> 供參考
+需要修改 iENCentre 與 iENBox 參數設定，<a href="https://docs.google.com/document/d/1yk3dYvlHknvMeqRwsHxMFqblRAKBpOALbgp690yXjTA" target="_blank">Edge Computing設定(Google Doc)</a>，供參考
 
 1. 勾選控制伺服器的 `Edge Computing` ，使平台不再做 ETL 計算
 

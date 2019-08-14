@@ -25,7 +25,7 @@ iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀�
 	done
 ```
 
-## Litebox MQTT 不穩重開機
+## Litebox MQTT 不穩定重開機
 
 為偵測 Litebox 是否已撥號上網，若有連線能力後，透過 `netstat` 查看 MQTT 連線狀態
 

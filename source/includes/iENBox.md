@@ -175,6 +175,21 @@ debug 檔案可以暫停 iENBox watdog 功能，讓服務殺掉不會再被帶�
 
 原因為可能 iENBox 版本過舊，導致 iENCentre 新版本新增的功能有所衝突
 
+## iENBox 時間校正
+
+從 iEN 平台同步，即可將 iENBox 時間做校時，惟須確認 iENBox 重開機後時間是否會跑掉
+
+若重開機後時間會跑掉，建議同步 iENBox 後，確認目前 iENBox 時間是正確的
+
+再利用 `hwclock -w` 將 目前系統時間 寫入 <font color=blue>hardware clock</font> 
+
+```shell
+	### Check iENBox current time
+	date
+	### Set iENBox hardware clock from system clock
+	hwclock -w
+```
+
 ## iENBox / Litebox 定時重開機
 
 若設備有不穩定情況，建議將 iENBox / Litebox 作定時重開機動作，再觀察幾天看看
@@ -223,7 +238,7 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 
 另外也能透過調整 <font color=blue>timeout</font> 、 <font color=blue>polling time</font>，提升 iENBox 詢問設備的成功率/
 
-### iENCentre 設定
+### iEN 平台設定
 
 * 維運選單 -> 設備管理 -> 控制器管理 -> 選擇控制器
 
@@ -272,6 +287,26 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 * SEND_NOTIFY_TIMER_INTERVAL： 間隔多久發送事件單，預設是每分鐘送一次 <font color=red>(註: 一次上傳一筆事件單)</font>
 
 ![Image](iENBox/event.png)
+
+## MQTT Broker 狀態確認
+
+若發生 iEN 平台斷線、無法同步等情況，需要確定 MQTT 服務是否正常運作，參考： <a href="https://docs.google.com/document/d/1xli3lcqkSH1JfjuzV5Zac5lHzTcbhyuAaS5twoUmYbI" target="_blank">確認MQTT Broker狀態</a>
+
+1.透過 `MQTTlens` 確認 MQTT Broker 狀態：
+
+   在 MQTTlens 輸入 IP、Port、使用者帳密 (帳密: ien/ienet1308)，建立 MQTT 連線
+
+![Image](iENBox/mqttlens.png)
+
+2.利用 MQTTlens 的 <font color=blue>Publish / Subscribe </font> 確認 MQTT Broker 狀態：
+   
+   * 先做 <font color=red>Subscribe</font> 訂閱動作，再進行 <font color=red>Publish</font> 發布動作 
+   
+   下圖為對 test topic 做 Subscribe 訂閱，接著 Publish Gino 訊息給 test topic
+   
+   可以看到回應 Message: Gino，有回應成功，表示 MQTT Broker 是正常運作的
+
+![Image](iENBox/publishsubscribe.png)
 
 ## iENBox 升級包及更新
 
