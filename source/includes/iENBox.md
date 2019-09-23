@@ -74,6 +74,56 @@ WebService Overview 如下圖，可以查看 iENBox 基本資訊
 
 ![Image](iENBox/parameter.png)
 
+## iENBox 參數說明
+
+承上述參數說明，這邊僅稍微描述參數用途，可依其他障礙處理去做設定，了解細節設定的差別性
+
+* IENBOX_TIMEZONE： 設定 iENBox 時區 (預設是 +8:00 UTC)
+
+* IENBOX_MQTT_ENABLE： 啟用 iENBox MQTT 同步納管功能 (預設是 False)
+
+* IENBOX_MQTT_URL_FORMAT： MQTT 連線的 IP (預設是 tcp://mqtt.ien.net.tw:1883)
+
+* DRIVER_RETRY_LIMIT： 詢問設備異常時，嘗試詢問的次數
+
+* DRIVER_RETRY_INTERVAL： 控制器詢問監控點失敗後，間隔多久時間後再做詢問的動作
+
+* DRIVER_TAG_ERROR_LIMIT： 連續 X 點詢問失敗後，就不再詢問後面的監控點
+
+* DRIVER_MODBUS_VALIDATE_WRITTEN： 確保 iEN 平台 AO 點的寫入
+
+* JAMOD_READ_DELAY_MS： 詢問一個監控點所能花費的時間
+
+* JAMOD_SEND_DELAY_MS： 問完一個監控點後，再詢問下一個監控點所花費的時間
+
+* CACHE_EXPIRACY_TIME： iEN 平台資料的暫存時間
+
+* CACHE_FEEDER_WORST_CREDIT： iENBox 逞罰時間，當詢問失敗次數越高後，間隔時間會拉長
+
+* CACHE_FEEDER_INTERVAL： 每個控制器之間，間隔多久時間後再作詢問動作
+
+* SEND_NOTIFY_TIMER_INTERVAL： 事件單保存空間
+
+* SEND_NOTIFY_BUFFER_SIZE： 間隔多久發送事件單
+
+* IOT_ENABLE： 啟用上拋 IoT 平台功能
+
+* IOT_API_KEY： IoT 平台的 API KEY
+
+* IOT_HOST： IoT 平台的 IP
+
+* IOT_RESTFUL_PORT： IoT 平台的 PORT
+
+* IOT_SILENCE_ENABLE： 若 iENBox 會從 IoT 平台抓取資料，並再將資料轉拋回 IoT 平台，此參數需設為 True
+
+* IENBOX_REBOOT_ENABLED： 啟用 iENBox 重開機功能
+
+* IENBOX_REBOOT_CRON： 設定 iENBox 重開機時間
+
+* DRIVER_KARAFUTO_TIMEOUT： IoT 平台的資料 timeout，e.g., 設 60 分鐘，表示 IoT 平台資料超過 60 分鐘，視為 N/A
+
+* FOG_COMPUTING_ENABLE： 設定 Edge Computing 功能
+
 ## 停用iENBox Service
 
 說明 iENBox 停用的方式，在測試設備通訊時候使用，避免通訊埠打架
@@ -267,6 +317,24 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 3. 暫存器位置： 監控點ID <font color=red>(註: 不需要帶 **$** 符號)</font>
 
 ![Image](iENBox/addIENBox.png)
+
+## iENBox 上拋 IoT 大平台設定
+
+在 iENBox 將相關參數做設定，即可上拋回 IoT 大平台，參考連結：<a href="https://drive.google.com/open?id=1_sFtWw1dj8ie3wwc9DTf1NdhubgvL2Am" target="_blank">iOT平台上拋設定</a>
+
+* IOT_ENABLE： 是否啟用 IoT 上拋功能
+
+* IOT_API_KEY： 填入專案的 API_KEY
+
+* IOT_HOST： 預設為 CHT IoT 平台，有需要可以更改為其他平台
+
+* IOT_RESTFUL_PORT：預設為 80 ，可視實際狀態做更動
+
+![Image](iENBox/IoT.png)
+
+<aside class="notice">
+若是將資料上拋回 中華 IoT 大平台，<code>IOT_HOST</code>、<code>IOT_RESTFUL_PORT</code>基本上不需要做額外更動
+</aside> 
 
 ## iENBox 事件單消化不良
 

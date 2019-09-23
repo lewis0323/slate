@@ -4,9 +4,9 @@
 
 iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決
 
-先前有針對此問題做改善，但仍有一定機率會發生
+原因為亂數效能關係，先前有針對此問題做改善，但仍有一定機率會發生
 
-透過 `wget` 判斷 iENBox WebService 有無開啟成功，若 WebService 抓取失敗，將 iENBox 砍掉重啟
+透過 `wget` 判斷 iENBox WebService 有無開啟成功，若 WebService 抓取失敗為服務沒有正常開啟，將 iENBox 程序砍掉重啟
 
 ```shell
 	#!/bin/bash

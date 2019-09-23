@@ -92,11 +92,11 @@ P.S. 執行 start.bat 後會跳出一視窗，若看到紅框表示 iENCentre �
 
 ### Struts (MVC)
 
-這邊我理解是 MVC 架構，即一個 Java class 會對應到 JavaScript
+這邊我理解是 MVC 架構，即一個 Java class 會對應到 Java Server Page
 
-Java 會與 JavaScript 作為相對應，例如空品派工，有個 AirdeviceErrorSubmit.java，那麼會有 AirdeviceErrorSubmit.jsp
+Java 會與 JSP 作為相對應，例如空品派工，有個 AirdeviceErrorSubmit.java，那麼會有 AirdeviceErrorSubmit.jsp
 
-JavaScript 位置: iENPortal\WebContent，如果跟太陽能平台有關的話，則放在這路徑下的 solar 資料夾中
+JSP 位置: iENPortal\WebContent，如果跟太陽能平台有關的話，則放在這路徑下的 solar 資料夾中
 
 Struts 位置: iENPortal\struts-config，會在此檔案中做顯示、動作間的對應關係
 
@@ -106,7 +106,7 @@ Struts 位置: iENPortal\struts-config，會在此檔案中做顯示、動作間
 
 最後執行成功，有個 result name，表示會轉到哪個 JSP 來作呈現畫面
 
-可以在 JavaScript 呼叫 actionName 來執行 Java 中的程式 (即前端跟後端互相配合的概念)
+可以在 JSP 呼叫 actionName 來執行 Java 中的程式 (即前端跟後端互相配合的概念)
 
 ![Image](iENPortal/air.png)
 
