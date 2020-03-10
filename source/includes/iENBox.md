@@ -24,7 +24,7 @@ Raw Data | 設備資料 | opt/ienbox/storage/upload/buffer
 
 * Config： 在 Maintenance 設定的結果，會儲存在 `PROPRIETARY.PROPERTIES` 檔案
 
-	若有需要看詳細的 iENBox Log 資訊，可以將 `LOG.PROPERTIES` 作下列修改<font color=blue> (擇一方式)</font>：
+	若有需要看詳細的 iENBox Log 資訊，可以將 `LOG.PROPERTIES` 作下列修改<font color=blue> (擇一方式)</font>，可參考<a href="https://drive.google.com/open?id=1SW1iQCChDK9E344xlR5i_GJC6xQIeRSMmIERfSItshk" target="_blank">開啟 iENBox Log 設定</a>：
 
 	1. log4j.logger.IENBOX.MSG=<font color=red>INFO</font>, IENBOXFileAppender
 
@@ -355,6 +355,11 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 * SEND_NOTIFY_TIMER_INTERVAL： 間隔多久發送事件單，預設是每分鐘送一次 <font color=red>(註: 一次上傳一筆事件單)</font>
 
 ![Image](iENBox/event.png)
+
+<aside class="warning">
+若是採用 <code>Public IP</code> 納管，切記須將 <code>MQTT Enable</code> 設為 <code>False</code>，
+否則無法將事件單上傳至平台
+</aside> 
 
 ## MQTT Broker 狀態確認
 
