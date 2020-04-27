@@ -361,6 +361,18 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 否則無法將事件單上傳至平台
 </aside> 
 
+## iENBox 4511 頁面卡住
+
+此問題發生於 `iENBox-1.24.15` 版本上，為亂數效能的關係，後採購版本均安裝 `iENBox-1.25.7` 已有修正此現象
+
+其解決方法將 iENBox 資料夾的 <font color = blue>env.sh</font> 檔案進行蓋檔即可，下載連結：<a href="https://bit.ly/3bFfIKw" target="_blank">env.sh</a>
+
+1.利用 WinSCP / FileZilla 將 env.sh 上傳至 iENBox (預設為: /media/sd/home/cht)
+
+2.將檔案複製到 iENBox 資料夾內，位置: /opt/ienbox/core/bin
+
+* 執行此指令： <font color = blue >cp /media/sd/home/cht/env.sh /opt/ienbox/core/bin </font>
+
 ## MQTT Broker 狀態確認
 
 若發生 iEN 平台斷線、無法同步等情況，需要確定 MQTT 服務是否正常運作，參考： <a href="https://docs.google.com/document/d/1xli3lcqkSH1JfjuzV5Zac5lHzTcbhyuAaS5twoUmYbI" target="_blank">確認MQTT Broker狀態</a>
