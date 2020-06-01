@@ -1,0 +1,22 @@
+<h1 id='database'>Database</h1><h2 id='postgresql'>新增 Postgresql 欄位</h2>
+<p>以 1.24.14-1.26.7 升級為例，如下圖來說明新增欄位流程：</p>
+
+<p><img src="/images/Database/Postgresql/TL-caa390ce.png" alt="Image" /></p>
+
+<p>Step 1. 登入 Postgresql，輸入使用者密碼</p>
+
+<p><img src="/images/Database/Postgresql/login-7fda605a.png" alt="Image" /></p>
+
+<p>Step 2. 尋找 Raw Data/ETL Data 存放位置，會長在 customer 底下</p>
+
+<p>位置為 ienc_system -&gt; Schemas -&gt; ienc_customer_1 </p>
+
+<p><font color=red>(註: 因為是企業版，故客戶ID 大多為1，理論上要對應到實際客戶ID)</font></p>
+
+<p><img src="/images/Database/Postgresql/schema-bd9ec040.png" alt="Image" /></p>
+
+<p>Step 3. 找到相對應的 Table ，在 Columns 點選右鍵 -&gt; Create -&gt; Columns</p>
+
+<p>填入相關資訊，以建立新欄位，這個例子就是取 <font color=blue>_decorated</font> ，型態設為 <font color=blue>boolean</font></p>
+
+<p><img src="/images/Database/Postgresql/create-854fe235.png" alt="Image" /></p>

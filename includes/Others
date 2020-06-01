@@ -1,0 +1,42 @@
+<h1 id='others'>Others</h1><h2 id='ienbox-webservice'>iENBox WebService 服務不正常運作</h2>
+<p>iENBox 有機率性服務開啟會失敗，以致於卡在網頁都是 404 狀態，通常重開機能解決</p>
+
+<p>原因為亂數效能關係，先前有針對此問題做改善，但仍有一定機率會發生</p>
+
+<p>透過 <code>wget</code> 判斷 iENBox WebService 有無開啟成功，若 WebService 抓取失敗為服務沒有正常開啟，將 iENBox 程序砍掉重啟</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
+    <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span>
+    <span class="k">do
+        </span><span class="nv">PID</span><span class="o">=</span><span class="sb">`</span><span class="nb">cat</span> /opt/ienbox/storage/ienbox.pid<span class="sb">`</span>
+        <span class="c">### 抓取 iENBox WebService 網頁</span>
+        wget http://127.0.0.1:4511
+        <span class="c">### 若抓取失敗，則重啟服務</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> index.html <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">rm </span>index.html
+        <span class="k">else
+            </span><span class="nb">kill</span> <span class="nv">$PID</span>
+        <span class="k">fi
+        </span><span class="nb">sleep </span>600
+    <span class="k">done</span>
+</code></pre></div><h2 id='litebox-mqtt'>Litebox MQTT 不穩定重開機</h2>
+<p>為偵測 Litebox 是否已撥號上網，若有連線能力後，透過 <code>netstat</code> 查看 MQTT 連線狀態</p>
+
+<p>若 MQTT 連線異常，則將 Litebox 重開機，此問題為老問題，與 Litebox 硬體設備有關</p>
+
+<p>連結: <a href="http://bit.ly/2UP04DS" target="_blank">一鍵執行</a></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="c">#!/bin/bash</span>
+    <span class="k">while</span> <span class="o">[</span> TRUE <span class="o">]</span> 
+    <span class="k">do
+        </span><span class="nv">ip</span><span class="o">=</span><span class="sb">`</span>ifconfig | <span class="nb">grep </span>eth0 | <span class="nb">awk</span> <span class="s1">'NR==1{print $1}'</span><span class="sb">`</span>
+        <span class="c">### 確認網路有撥接上</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$ip</span> <span class="o">==</span> <span class="s2">"eth0"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="nv">$ip</span> 
+            <span class="nb">sleep </span>60
+            <span class="c">### 確認 MQTT 連線狀態</span>
+            <span class="nv">MQTT</span><span class="o">=</span><span class="sb">`</span>netstat <span class="nt">-p</span> | <span class="nb">grep </span>1883 | <span class="nb">awk</span> <span class="s1">'{print $6}'</span><span class="sb">`</span>
+            <span class="k">if</span> <span class="o">[</span> <span class="nv">$MQTT</span> <span class="o">!=</span> <span class="s2">"ESTABLISHED"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+                </span>reboot
+            <span class="k">fi 
+        fi
+    done</span>
+</code></pre></div>

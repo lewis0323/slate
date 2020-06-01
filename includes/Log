@@ -1,0 +1,8 @@
+<h1 id='log-errors'>Log Errors</h1><h2 id='fatal-ien-centre-kernel-module-was-not-initialized'>[FATAL] iEN-Centre kernel module was not initialized. (密碼過期)</h2>
+<p>通常出現這個錯誤訊息，大多從 iENCentre 登入頁面看不到版號</p>
+
+<p>嘗試刪除 ienc\WEB-INF\config\status.dump 檔案，然後重啟 iENCentre 跟 MSSQL 看看</p>
+
+<p>仍不行的話，向 TL 尋求協助幫忙</p>
+
+<p><img src="/images/Log/kernel-0352f628.png" alt="Image" /></p>
