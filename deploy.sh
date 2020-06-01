@@ -36,7 +36,7 @@ parse_args() {
   while : ; do
     if [[ $1 = "-h" || $1 = "--help" ]]; then
       echo "$help_message"
-      return 0
+      exit 0
     elif [[ $1 = "-v" || $1 = "--verbose" ]]; then
       verbose=true
       shift
@@ -49,32 +49,41 @@ parse_args() {
     elif [[ $1 = "-n" || $1 = "--no-hash" ]]; then
       GIT_DEPLOY_APPEND_HASH=false
       shift
+    elif [[ $1 = "--source-only" ]]; then
+      source_only=true
+      shift
+    elif [[ $1 = "--push-only" ]]; then
+      push_only=true
+      shift
     else
       break
     fi
   done
+
+  if [ ${source_only} ] && [ ${push_only} ]; then
+    >&2 echo "You can only specify one of --source-only or --push-only"
+    exit 1
+  fi
 
   # Set internal option vars from the environment and arg flags. All internal
   # vars should be declared here, with sane defaults if applicable.
 
   # Source directory & target branch.
   deploy_directory=build
-  deploy_branch=master
+  deploy_branch=gh-pages
 
   #if no user identity is already set in the current git environment, use this:
-  default_username=${GIT_DEPLOY_USERNAME:-Gino}
+  default_username=${GIT_DEPLOY_USERNAME:-deploy.sh}
   default_email=${GIT_DEPLOY_EMAIL:-}
 
   #repository to deploy to. must be readable and writable.
-  repo=https://github.com/hoyuisun/hoyuisun.github.io.git
+  repo=origin
 
   #append commit hash to the end of message by default
   append_hash=${GIT_DEPLOY_APPEND_HASH:-true}
 }
 
 main() {
-  parse_args "$@"
-
   enable_expanded_output
 
   if ! git diff --exit-code --quiet --cached; then
@@ -87,7 +96,7 @@ main() {
 
   #default commit message uses last title if a custom one is not supplied
   if [[ -z $commit_message ]]; then
-    commit_message="$commit_title"
+    commit_message="publish: $commit_title"
   fi
 
   #append hash to commit message unless no hash flag was found
@@ -205,9 +214,11 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
-if [[ $1 = --source-only ]]; then
+parse_args "$@"
+
+if [[ ${source_only} ]]; then
   run_build
-elif [[ $1 = --push-only ]]; then
+elif [[ ${push_only} ]]; then
   main "$@"
 else
   run_build

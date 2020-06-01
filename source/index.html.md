@@ -26,5 +26,6 @@ search: true
 
 ModInverter: <a href="http://bit.ly/2C4Gc8Q" target="_blank">Download</a>，credited by Jasper.
 
+Last update: 2020/06/01
 
 

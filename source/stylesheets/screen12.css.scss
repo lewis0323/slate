@@ -59,7 +59,7 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
 
   // language selector for mobile devices
@@ -75,9 +75,9 @@ html, body {
   .logo {
     display: block;
     max-width: 60%;
-    margin-top: 10%;
+    margin-top: 30px;
     margin-left: 20%;
-    margin-bottom: 10%;
+    margin-bottom: 20%;
   }
 
   &>.search {
@@ -173,7 +173,7 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .toc-footer {
@@ -264,7 +264,7 @@ html, body {
   // I know, it's hackish, but it's the simplist way to make the left
   // half of the content always this background color.
   .dark-box {
-    width: 5%;
+    width: 30px;
     background-color: $main-bg;
     position: absolute;
     right: 0;
@@ -316,20 +316,8 @@ html, body {
 // This is all the stuff with the light background in the left half of the page
 
 .content {
-  // fixes webkit rendering bug for some: see #538
-  -webkit-transform: translateZ(0);
-  // to place content above the dark box
-  position: relative;
-  z-index: 30;
-  margin-right: 5%;
-
-  &:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+    margin-right: 500px;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
@@ -366,7 +354,7 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 19px;
-    margin-top: 4em;
+    margin-top: 2.5em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
@@ -404,7 +392,7 @@ html, body {
     th,td {
       text-align: left;
       vertical-align: top;
-      line-height: 1.6;
+      line-height: 1;
       code {
         white-space: nowrap;
       }
@@ -506,7 +494,6 @@ html, body {
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
   }
 }
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
