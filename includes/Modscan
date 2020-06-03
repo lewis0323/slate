@@ -86,7 +86,7 @@ You can use <code>modtool.jar -h</code> for help.
 <li><p>cp /media/sd/home/cht/modInverter.jar /opt/ienbox/core/bin</p></li>
 </ul>
 
-<p>參考： <a href="http://bit.ly/2QN8DAq" target="_blank">modInverter使用說明</a></p>
+<p>參考： <a href="https://drive.google.com/file/d/1qvH0yF-jqr684uNDh5cukGoRWf2ftSXg/view?usp=sharing" target="_blank">modInverter使用說明</a></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>    <span class="c">### Kaco Inverter Sample (SlaveId = 1)</span>
     java <span class="nt">-Djava</span>.library.path<span class="o">=</span>../lib <span class="nt">-jar</span> modInverter.jar <span class="nt">-m</span> kaco <span class="nt">-a</span> 1 <span class="nt">-i</span> /dev/ttyS1
     <span class="c">### Motech Inverter Sample (SlaveId = 1 ... 10)</span>
