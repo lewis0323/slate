@@ -4,11 +4,11 @@
 
 ## iEN 報表無資料 (No Raw Data)
 
-下列方式可以先自行排除，若都不能解決，建議請 TL 協助幫忙，<a href="https://drive.google.com/open?id=1pomWgNIVvLxeuZpJsh7u5iLX20bvQtfbCQxklhX-1Lg" target="_blank">iEN報表無資料問題(Google Doc)</a> 供參考
+下列方式可以先自行排除，若都不能解決，建議請 TL 協助幫忙，<a href="https://drive.google.com/file/d/1Gy2fmL8zUoNImWBlnhODI4bhcBWQ9pqV/view?usp=sharing" target="_blank">iEN報表無資料問題(Google Doc)</a> 供參考
 
 ### iENBox Buffer
 
-可以參考前面 [iENBox 環境](#ienbox-2) 或 <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 `upload/buffer` 內是否有 raw data
+可以參考前面 [iENBox 環境](#ienbox-2) 或 <a href="https://drive.google.com/file/d/1YL__8LtTtaNyB23LoKsnSmskzB_UMR0M/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 `upload/buffer` 內是否有 raw data
 
 1. 若沒有，表示 iENBox 有正常上拋回平台，**平台 DataBase** 問題可能性較大
 

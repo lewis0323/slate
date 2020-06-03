@@ -49,7 +49,7 @@ You can use <code>modtool.jar -h</code> for help.
 
 * cp /media/sd/home/cht/modInverter.jar /opt/ienbox/core/bin
 
-參考： <a href="http://bit.ly/2QN8DAq" target="_blank">modInverter使用說明</a>
+參考： <a href="https://drive.google.com/file/d/1qvH0yF-jqr684uNDh5cukGoRWf2ftSXg/view?usp=sharing" target="_blank">modInverter使用說明</a>
 
 ```shell
 	### Kaco Inverter Sample (SlaveId = 1)

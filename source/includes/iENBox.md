@@ -4,7 +4,7 @@
 
 大略分為 [iENBox同步異常](#restore-ienbox) 、 [停用iENBox服務](#ienbox-service) 、 [iENBox更新的方式](#ienbox-3)
 
-相關資料： <a href="https://drive.google.com/open?id=1Z-syFzXTG4-eEB7VUSGyWt_ZOC8phfG8" target="_blank">iENBox教育訓練</a> 、 <a href="https://drive.google.com/open?id=1-6OyF8CFe69U9L563_LCbSUEJrqA6CUK" target="_blank">障礙排除SOP</a>
+相關資料： <a href="https://drive.google.com/file/d/1bv0vPYsVt1-6_Cw0q_6U6F5fipo1r48Z/view?usp=sharing" target="_blank">iENBox教育訓練</a> 、 <a href="https://drive.google.com/file/d/1qxGGkrCWZCTl-AfNOJk3_-q_zwo6McYI/view?usp=sharing" target="_blank">障礙排除SOP</a>
 
 ## iENBox 環境
 
@@ -24,7 +24,7 @@ Raw Data | 設備資料 | opt/ienbox/storage/upload/buffer
 
 * Config： 在 Maintenance 設定的結果，會儲存在 `PROPRIETARY.PROPERTIES` 檔案
 
-	若有需要看詳細的 iENBox Log 資訊，可以將 `LOG.PROPERTIES` 作下列修改<font color=blue> (擇一方式)</font>，可參考<a href="https://drive.google.com/open?id=1SW1iQCChDK9E344xlR5i_GJC6xQIeRSMmIERfSItshk" target="_blank">開啟 iENBox Log 設定</a>：
+	若有需要看詳細的 iENBox Log 資訊，可以將 `LOG.PROPERTIES` 作下列修改<font color=blue> (擇一方式)</font>，可參考<a href="https://docs.google.com/document/d/1SW1iQCChDK9E344xlR5i_GJC6xQIeRSMmIERfSItshk/edit?usp=sharing" target="_blank">開啟 iENBox Log 設定</a>：
 
 	1. log4j.logger.IENBOX.MSG=<font color=red>INFO</font>, IENBOXFileAppender
 
@@ -34,7 +34,7 @@ Raw Data | 設備資料 | opt/ienbox/storage/upload/buffer
 	
 	有做蓋檔動作，得用 `chmod a+x`，確認 jars 有權限可以執行
 
-* Raw Data： 確認 iENBox 是否存留 raw data，通常當<font color=blue>報表沒數值</font>來這邊作確認，參考資料： <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a>
+* Raw Data： 確認 iENBox 是否存留 raw data，通常當<font color=blue>報表沒數值</font>來這邊作確認，參考資料： <a href="https://drive.google.com/file/d/1YL__8LtTtaNyB23LoKsnSmskzB_UMR0M/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a>
 
 	1. 如果有 Raw Data，先去看 Log，確定非網路問題 (e.g., 防火牆等問題) 後，建議將 iENBox 服務重啟，確認是否消失
 
@@ -308,7 +308,7 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 
 ## iENBox 納管其他 iENBox (iENBox Protocol)
 
-參考： <a href="https://drive.google.com/open?id=13BCjy7DBRGroE2oNK_OkXACVogV9Tpq_" target="_blank">iEN-Box 納管其他 iEN-Box</a>
+參考： <a href="https://drive.google.com/file/d/1xQzHOHTel9E297pMwCQFMbg-8-a8IpYN/view?usp=sharing" target="_blank">iEN-Box 納管其他 iEN-Box</a>
 
 1. 在新增控制器 -> 通訊協定選擇「IENBox」
 
@@ -320,7 +320,7 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 
 ## iENBox 上拋 IoT 大平台設定
 
-在 iENBox 將相關參數做設定，即可上拋回 IoT 大平台，參考連結：<a href="https://drive.google.com/open?id=1_sFtWw1dj8ie3wwc9DTf1NdhubgvL2Am" target="_blank">iOT平台上拋設定</a>
+在 iENBox 將相關參數做設定，即可上拋回 IoT 大平台，參考連結：<a href="https://drive.google.com/file/d/1_sFtWw1dj8ie3wwc9DTf1NdhubgvL2Am/view?usp=sharing" target="_blank">iOT平台上拋設定</a>
 
 * IOT_ENABLE： 是否啟用 IoT 上拋功能
 
@@ -363,7 +363,7 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 
 ## iENBox 4511 頁面卡住
 
-此問題發生於 `iENBox-1.24.15` 版本上，為亂數效能的關係，後採購版本均安裝 `iENBox-1.25.7` 已有修正此現象
+此問題發生於 <code>iENBox-1.24.15</code> 版本上，為亂數效能的關係，後採購版本均安裝 `iENBox-1.25.7` 已有修正此現象
 
 其解決方法將 iENBox 資料夾的 <font color = blue>env.sh</font> 檔案進行蓋檔即可，下載連結：<a href="https://bit.ly/3bFfIKw" target="_blank">env.sh</a>
 
@@ -409,7 +409,7 @@ Reboot Hours: 間隔多少小時後，作重開機動作
 
 若要製作 iENBox all-1.26.3，則舊版位置為 null，即建立空的資料夾帶入
 
-參考： <a href="https://drive.google.com/open?id=1F91nYGgeTILX_D_N6xW8SJiW3O8iZexl" target="_blank">iENBox安裝檔與升級包製作</a>
+參考： <a href="https://drive.google.com/file/d/1o3KfMOr2GgFL5k8sLoEC8gVDGpCWjUnQ/view?usp=sharing" target="_blank">iENBox安裝檔與升級包製作</a>
 
 ![Image](iENBox/patch.png)
 
