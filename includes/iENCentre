@@ -3,7 +3,7 @@
 <h2 id='ien-no-raw-data'>iEN 報表無資料 (No Raw Data)</h2>
 <p>下列方式可以先自行排除，若都不能解決，建議請 TL 協助幫忙，<a href="https://drive.google.com/file/d/1Gy2fmL8zUoNImWBlnhODI4bhcBWQ9pqV/view?usp=sharing" target="_blank">iEN報表無資料問題(Google Doc)</a> 供參考</p>
 <h3 id='ienbox-buffer'>iENBox Buffer</h3>
-<p>可以參考前面 <a href="#ienbox-2">iENBox 環境</a> 或 <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 <code>upload/buffer</code> 內是否有 raw data</p>
+<p>可以參考前面 <a href="#ienbox-2">iENBox 環境</a> 或 <a href="https://drive.google.com/file/d/1YL__8LtTtaNyB23LoKsnSmskzB_UMR0M/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 <code>upload/buffer</code> 內是否有 raw data</p>
 
 <ol>
 <li><p>若沒有，表示 iENBox 有正常上拋回平台，<strong>平台 DataBase</strong> 問題可能性較大</p></li>

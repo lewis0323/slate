@@ -370,18 +370,22 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>此整理於相關 iEN 維運經驗作為交接，同時將相關資料放至於 Google Docs 上，<a href="http://bit.ly/2UG73Qb" target="_blank">iEN維運</a></p>
+<p>此整理於相關 iEN 維運經驗作為交接，同時將相關資料放至於 Google Docs 上，<a href="https://drive.google.com/drive/folders/1RR7V6y78Y5jByIamf-eydPYwJl4mvSXv" target="_blank">iEN維運</a></p>
 
 <p>ModInverter: <a href="https://drive.google.com/file/d/1sjqpbZrjNVlXRMiiY4MLnFH_Sjb0qBtD/view?usp=sharing" target="_blank">Download</a>，credited by Jasper.</p>
 
+<p>Last update: 2020/06/04</p>
+
 <p>Note: </p>
 
-<ol>
+<ul>
 <li><p>Fix scrolling contents on the left side of page issue (06/01)</p></li>
-<li><p>Fix google doc link issue (06/03)</p></li>
-</ol>
+<li><p>Fix google doc link issue (06/04)</p></li>
+</ul>
 
-<p>Last update: 2020/06/03</p>
+<aside class="notice">
+此維運手冊僅於 `2020/04/30` 前的資訊，後續依 iEN 更新內容作為調整
+</aside> 
 <h1 id='modscan'>Modscan</h1>
 <p>Modscan 是一套用來測試設備通訊是否正常的程式，即檢驗通訊一來一往的封包是否正常、無遺失</p>
 
@@ -602,7 +606,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <li><p>Lib： 這邊是相關 library，只有在尚未釋出 iENBox 新版本，Release Candidate 階段先將 lib 作蓋檔，大多蓋在 jars/cht 裡</p>
 
 <p>有做蓋檔動作，得用 <code>chmod a+x</code>，確認 jars 有權限可以執行</p></li>
-<li><p>Raw Data： 確認 iENBox 是否存留 raw data，通常當<font color=blue>報表沒數值</font>來這邊作確認，參考資料： <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a></p></li>
+<li><p>Raw Data： 確認 iENBox 是否存留 raw data，通常當<font color=blue>報表沒數值</font>來這邊作確認，參考資料： <a href="https://drive.google.com/file/d/1YL__8LtTtaNyB23LoKsnSmskzB_UMR0M/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a></p></li>
 </ul>
 
 <p>1. 如果有 Raw Data，先去看 Log，確定非網路問題 (e.g., 防火牆等問題) 後，建議將 iENBox 服務重啟，確認是否消失</p>
@@ -1005,7 +1009,7 @@ You can use <code>modInverter.jar -h</code> for help.
 <h2 id='ien-no-raw-data'>iEN 報表無資料 (No Raw Data)</h2>
 <p>下列方式可以先自行排除，若都不能解決，建議請 TL 協助幫忙，<a href="https://drive.google.com/file/d/1Gy2fmL8zUoNImWBlnhODI4bhcBWQ9pqV/view?usp=sharing" target="_blank">iEN報表無資料問題(Google Doc)</a> 供參考</p>
 <h3 id='ienbox-buffer'>iENBox Buffer</h3>
-<p>可以參考前面 <a href="#ienbox-2">iENBox 環境</a> 或 <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 <code>upload/buffer</code> 內是否有 raw data</p>
+<p>可以參考前面 <a href="#ienbox-2">iENBox 環境</a> 或 <a href="https://drive.google.com/file/d/1YL__8LtTtaNyB23LoKsnSmskzB_UMR0M/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a> 所述，查看 <code>upload/buffer</code> 內是否有 raw data</p>
 
 <ol>
 <li><p>若沒有，表示 iENBox 有正常上拋回平台，<strong>平台 DataBase</strong> 問題可能性較大</p></li>

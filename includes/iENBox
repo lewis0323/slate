@@ -57,7 +57,7 @@
 <li><p>Lib： 這邊是相關 library，只有在尚未釋出 iENBox 新版本，Release Candidate 階段先將 lib 作蓋檔，大多蓋在 jars/cht 裡</p>
 
 <p>有做蓋檔動作，得用 <code>chmod a+x</code>，確認 jars 有權限可以執行</p></li>
-<li><p>Raw Data： 確認 iENBox 是否存留 raw data，通常當<font color=blue>報表沒數值</font>來這邊作確認，參考資料： <a href="https://drive.google.com/file/d/1WFLOls5F_xNIoI2yBZLPrTm8UrASIXl9/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a></p></li>
+<li><p>Raw Data： 確認 iENBox 是否存留 raw data，通常當<font color=blue>報表沒數值</font>來這邊作確認，參考資料： <a href="https://drive.google.com/file/d/1YL__8LtTtaNyB23LoKsnSmskzB_UMR0M/view?usp=sharing" target="_blank">iEN-Box 如何緩存上傳 rawdata files</a></p></li>
 </ul>
 
 <p>1. 如果有 Raw Data，先去看 Log，確定非網路問題 (e.g., 防火牆等問題) 後，建議將 iENBox 服務重啟，確認是否消失</p>
